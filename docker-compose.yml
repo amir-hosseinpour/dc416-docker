@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  web:
+    build: 
+      context: .
+    container_name: web
+    networks:
+      internal:
+        ipv4_address: 172.20.0.10
+    expose:
+      - 8080
+  terminal:
+    build:
+      context: .
+      dockerfile: Dockerfile.terminal
+      args:
+        NODE_ENV: production
+    container_name: terminal
+    networks:
+      internal:
+        ipv4_address: 172.20.0.11
+    expose:
+      - 8082
+
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

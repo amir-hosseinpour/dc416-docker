@@ -1,0 +1,176 @@
+/* Compact styles for iframe embedding */
+html, body {
+  font-size: 10px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+body {
+  padding: 2px !important;
+}
+
+main {
+  border-width: 0 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+#bars {
+  font-size: 9px !important;
+}
+
+#bar-1 {
+  height: 15px !important;
+  line-height: 15px !important;
+  padding-left: 3px !important;
+  font-size: 8px !important;
+  content: "DEFCON TORONTO";
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#bar-2 {
+  height: 2px !important;
+  margin-top: 1px !important;
+}
+
+#bar-3, #bar-4, #bar-5 {
+  height: 1px !important;
+  margin-top: 1px !important;
+}
+
+pre {
+  font-size: 3px !important;
+  line-height: 4px !important;
+  letter-spacing: -1px !important;
+  white-space: pre !important;
+  overflow-x: visible !important;
+  max-width: 100% !important;
+  font-weight: 900 !important; /* Maximum weight */
+  text-shadow: 0 0 0.1px #A4F7FD !important; /* Add text shadow for thickness */
+  -webkit-text-stroke: 0.05px #A4F7FD !important; /* Add stroke for webkit browsers */
+  color: #A4F7FD !important;
+}
+
+.ascii-container {
+  transform: scale(0.65) !important;
+  margin-bottom: -20px !important;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+.ascii-container pre {
+  line-height: 1 !important;
+  margin: 0 !important;
+  text-shadow: 0 0 0.2px #A4F7FD !important; /* Slightly stronger shadow for container items */
+}
+
+.ascii-container.ultra-compact pre {
+  font-size: 4px !important;
+  font-weight: bold !important;
+  letter-spacing: 0 !important;
+  transform: none !important;
+}
+
+.ascii-container.mobile-view {
+  transform: scale(0.25) !important; /* Reduced from 0.3 (approx 17% smaller) */
+  transform-origin: left top !important;
+  margin-bottom: -75px !important; /* Adjusted to compensate for smaller size */
+  max-width: 100% !important;
+}
+
+.ascii-container.mobile-view pre {
+  font-size: 4px !important;
+  line-height: 0.8 !important;
+  letter-spacing: -2px !important;
+  white-space: nowrap !important;
+  overflow-x: hidden !important;
+}
+
+.ascii-container.ultra-compact {
+  transform: scale(0.33) !important; /* Reduced from 0.4 (approx 18% smaller) */
+  margin-bottom: -28px !important; /* Adjusted to compensate for smaller size */
+}
+
+.ascii-container.ultra-compact pre {
+  font-size: 4px !important;
+  line-height: 0.8 !important;
+  letter-spacing: -1.5px !important;
+}
+
+p {
+  line-height: 12px !important;
+}
+
+input {
+  font-size: 10px !important;
+}
+
+#terminal, #input-line {
+  margin-left: 3px !important;
+  margin-right: 3px !important;
+}
+
+#terminal {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Add specific styling for tablet view in iframes */
+@media (min-width: 601px) and (max-width: 1024px) {
+  html, body {
+    font-size: 12px !important;
+  }
+  
+  body {
+    padding: 5px !important;
+  }
+  
+  pre {
+    font-size: 7px !important;
+    line-height: 9px !important;
+  }
+  
+  #bar-1 {
+    height: 20px !important;
+    line-height: 20px !important;
+    font-size: 12px !important;
+  }
+  
+  #terminal, #input-line {
+    margin-left: 8px !important;
+    margin-right: 5px !important;
+  }
+  
+  .ascii-art-container.tablet-view {
+    transform: scale(0.85) !important;
+    transform-origin: left top !important;
+  }
+}
+
+@media (max-width: 400px) {
+  pre {
+    font-size: 4px !important; /* Added specific size for mobile view in iframe */
+    line-height: 5px !important;
+    transform: scale(0.65) !important;
+    letter-spacing: -1px !important;
+  }
+  
+  .ascii-container.mobile-view {
+    transform: scale(0.25) !important;
+  }
+}
+
+@media (max-width: 320px) {
+  pre {
+    font-size: 3px !important; /* Added specific size for tiny view in iframe */
+    line-height: 4px !important;
+    transform: scale(0.55) !important;
+    letter-spacing: -1.1px !important;
+  }
+  
+  .ascii-container.ultra-compact {
+    transform: scale(0.33) !important;
+  }
+}

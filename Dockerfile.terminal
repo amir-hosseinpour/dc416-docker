@@ -1,0 +1,19 @@
+FROM node:20-alpine as build
+
+WORKDIR /app
+
+# Copy package files and install dependencies
+COPY dc416-terminal-main/package*.json ./
+RUN npm install
+
+# Copy the rest of the application code
+COPY dc416-terminal-main/ ./
+
+# Build the application
+# RUN npm run build
+
+FROM httpd:2.4-alpine
+
+# Copy built files to Apache's root
+COPY --from=build /app/dist/ /usr/local/apache2/htdocs/
+

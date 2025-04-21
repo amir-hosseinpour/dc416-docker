@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200;300;400;600&family=Pixelify+Sans&family=VT323&display=swap');
+
+:root {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 200;
+  --bg: #0C0623;
+  --border: #CD5CE6;
+  --text: #78B153;
+  --prompt-default: #A5A7A7;
+  --prompt-1: #FE6BC9;
+  --prompt-2: #70FDFF;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
+
+html,
+body {
+  color: var(--text);
+  background-color: var(--bg);
+  height: 100%;
+  font-size: 22px;
+  display: block;
+}
+
+html {
+  overflow: auto;
+}
+
+body {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+main {
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+  border: var(--border) solid 2px;
+  border-radius: 2px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+p {
+  display: block;
+  line-height: 30px;
+  animation: typing 0.5s steps(30, end);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div {
+  line-height: 22px;
+}
+
+@font-face {
+  font-family: ascii;
+  src: url("./font/IBMPlexMono-Thin.ttf")
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+  line-height: 20px !important;
+  color: #A4F7FD;
+  font-family: "ascii", monospace;
+  transform-origin: left top;
+  font-weight: 900;
+  text-shadow: 0 0 0.5px #A4F7FD;
+  -webkit-text-stroke: 0.2px #A4F7FD;
+}
+
+input {
+  font-family: 'IBM Plex Mono', monospace;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 22px;
+  color: #FF7685;
+  caret-color: var(--prompt-default);
+  width: 50%;
+}
+
+a {
+  color: #B6AAEE;
+}
+
+a:hover {
+  background-color: var(--border);
+  color: var(--bg);
+}
+
+#bars {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  background-color: var(--bg);
+}
+
+#bar-1 {
+  height: 36px;
+  background-color: var(--border);
+  color: var(--bg);
+  line-height: 36px;
+  padding-left: 10px;
+}
+
+#bar-2 {
+  height: 4px;
+  background-color: var(--border);
+  margin-top: 1px;
+}
+
+#bar-3 {
+  height: 3px;
+  background-color: var(--border);
+  margin-top: 2px;
+}
+
+#bar-4 {
+  height: 2px;
+  background-color: var(--border);
+  margin-top: 3px;
+}
+
+
+#bar-5 {
+  height: 1px;
+  background-color: var(--border);
+  margin-top: 4px;
+}
+
+#terminal {
+  margin-left: 20px;
+}
+
+#input-line {
+  margin-left: 20px;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.command {
+  text-shadow:
+    0 0 7px #fff,
+    0 0 151px var(--border);
+  color: #FD9BDB;
+}
+
+.output {
+  font-weight: 400 !important;
+}
+
+.keys {
+  color: #FF9951;
+  font-weight: 400;
+}
+
+.extra-bold {
+  font-weight: 900 !important;
+  text-shadow: 0 0 1px #A4F7FD, 0 0 1px #A4F7FD !important;
+  -webkit-text-stroke: 0.3px #A4F7FD !important;
+  color: #A4F7FD !important;
+}
+
+/* Add tablet-specific classes for ASCII art */
+.ascii-art-container {
+  margin-bottom: 10px;
+}
+
+.ascii-art-container.tablet-view pre {
+  font-size: 10px;
+  line-height: 14px !important;
+  letter-spacing: -0.2px;
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  html, body {
+    font-size: 16px;
+  }
+  
+  body {
+    padding: 10px;
+  }
+  
+  input {
+    font-size: 16px;
+    width: 60%;
+  }
+  
+  pre {
+    font-size: 10px;
+    line-height: 14px !important;
+    letter-spacing: -0.2px;
+    font-weight: 900;
+    text-shadow: 0 0 0.4px #A4F7FD;
+    -webkit-text-stroke: 0.15px #A4F7FD;
+  }
+  
+  main {
+    border-width: 2px;
+  }
+  
+  #terminal {
+    margin-left: 15px;
+    margin-right: 10px;
+  }
+  
+  #input-line {
+    margin-left: 15px;
+  }
+  
+  #bars {
+    font-size: 18px;
+  }
+  
+  #bar-1 {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 8px;
+    font-size: 16px;
+  }
+  
+  #bar-2 {
+    height: 4px;
+  }
+  
+  #bar-3 {
+    height: 3px;
+  }
+  
+  #bar-4 {
+    height: 2px;
+  }
+  
+  #bar-5 {
+    height: 1px;
+  }
+}
+
+@media (max-width: 600px) {
+  html, body {
+    font-size: 12px;
+  }
+  
+  body {
+    padding: 3px;
+    font-weight: 300;
+  }
+
+  input {
+    font-size: 12px;
+    width: 70%;
+  }
+
+  p {
+    line-height: 16px;
+  }
+
+  pre {
+    line-height: 8px !important; /* Reduced from 10px */
+    font-size: 7px; /* Reduced from 8px */
+    transform: scale(0.8); /* Reduced from 0.85 (approx 6% smaller) */
+    letter-spacing: -0.6px; /* Increased letter spacing compression */
+    font-weight: 900;
+    text-shadow: 0 0 0.3px #A4F7FD;
+    -webkit-text-stroke: 0.1px #A4F7FD;
+  }
+
+  main {
+    border-width: 1px;
+  }
+
+  div {
+    line-height: 16px;
+  }
+
+  #terminal {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #input-line {
+    margin-left: 5px;
+  }
+  
+  #bars {
+    font-size: 14px;
+  }
+  
+  #bar-1 {
+    height: 22px;
+    line-height: 22px;
+    padding-left: 5px;
+    font-size: 12px;
+  }
+  
+  #bar-2 {
+    height: 3px;
+  }
+
+  #bar-3 {
+    height: 2px;
+  }
+
+  #bar-4, #bar-5 {
+    height: 1px;
+  }
+}
+
+@media (max-width: 400px) {
+  html, body {
+    font-size: 10px;
+  }
+  
+  body {
+    padding: 2px;
+  }
+  
+  input {
+    font-size: 10px;
+    width: 80%;
+  }
+  
+  p {
+    line-height: 14px;
+  }
+  
+  pre {
+    font-size: 5px; /* Reduced from 6px */
+    line-height: 7px !important; /* Reduced from 8px */
+    transform: scale(0.65); /* Reduced from 0.75 (approx 13% smaller) */
+    letter-spacing: -0.9px; /* Increased letter spacing compression */
+    font-weight: 900;
+    text-shadow: 0 0 0.2px #A4F7FD;
+    -webkit-text-stroke: 0.1px #A4F7FD;
+  }
+  
+  #terminal, #input-line {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  
+  #bars {
+    font-size: 10px;
+  }
+  
+  #bar-1 {
+    height: 18px;
+    line-height: 18px;
+    padding-left: 4px;
+    font-size: 10px;
+  }
+
+  .ascii-art-container.mobile-view {
+    transform: scale(0.85); /* Added scaling for mobile container */
+    transform-origin: left top;
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 320px) {
+  html, body {
+    font-size: 9px;
+  }
+  
+  body {
+    padding: 1px;
+  }
+  
+  input {
+    font-size: 9px;
+  }
+  
+  #bar-1 {
+    height: 16px;
+    line-height: 16px;
+    padding-left: 3px;
+    font-size: 8px;
+  }
+  
+  pre {
+    font-size: 4px; /* Reduced from 5px */
+    line-height: 5px !important; /* Reduced from 6px */
+    transform: scale(0.55); /* Reduced from 0.65 (approx 15% smaller) */
+    letter-spacing: -1.1px; /* Increased letter spacing compression */
+    font-weight: 900;
+    text-shadow: 0 0 0.1px #A4F7FD;
+    -webkit-text-stroke: 0.05px #A4F7FD;
+  }
+  
+  #bars {
+    font-size: 8px;
+  }
+
+  .ascii-art-container.tiny-view {
+    transform: scale(0.8); /* Added scaling for tiny container */
+    transform-origin: left top;
+    margin-bottom: 0px;
+  }
+}

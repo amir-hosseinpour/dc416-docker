@@ -1,0 +1,179 @@
+/* Responsive Design */
+
+/* Larger Screens */
+@media screen and (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .hero h1 {
+        font-size: 5rem;
+    }
+}
+
+/* Desktop */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 90%;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+}
+
+/* Tablet */
+@media screen and (max-width: 992px) {
+    section {
+        padding: 60px 0;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero .tagline {
+        font-size: 1.3rem;
+    }
+    
+    .event-cards, .blog-cards {
+        gap: 20px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-links {
+        width: 100%;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        right: 0;
+        top: 70px;
+        background-color: rgba(18, 18, 18, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: calc(100vh - 70px);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in;
+        z-index: 1000;
+        padding: 20px;
+    }
+    
+    .nav-links li {
+        margin: 15px 0;
+        opacity: 0;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .nav-active {
+        transform: translateX(0%);
+    }
+    
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+    
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .toggle .line2 {
+        opacity: 0;
+    }
+    
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero .tagline {
+        font-size: 1.1rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .event-card {
+        flex-direction: column;
+    }
+    
+    .event-date {
+        padding: 10px;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .event-date .month,
+    .event-date .day {
+        font-size: 1.2rem;
+    }
+    
+    .blog-card {
+        max-width: 100%;
+    }
+    
+    .community-links {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .footer-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Small Mobile */
+@media screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero .tagline {
+        font-size: 1rem;
+    }
+    
+    .container {
+        width: 95%;
+    }
+    
+    section {
+        padding: 40px 0;
+    }
+    
+    .nav-links {
+        width: 70%;
+    }
+}
