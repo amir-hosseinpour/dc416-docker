@@ -33,8 +33,16 @@
     font-style: normal;
 }
 
+/* Add Courier New font-face */
+@font-face {
+    font-family: 'Courier New';
+    src: url('../assets/fonts/CourierNew.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: 'Monaco', monospace;  /* updated to use Monaco */
+    font-family: 'Courier New', 'Monaco', monospace;  /* updated to use Courier New */
     background-color: var(--dark);
     color: var(--light);
     line-height: 1.6;
