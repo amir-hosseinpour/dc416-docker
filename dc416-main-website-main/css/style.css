@@ -25,24 +25,10 @@
     font-style: normal;
 }
 
-/* Add Monaco font-face */
-@font-face {
-    font-family: 'Monaco';
-    src: url('../assets/fonts/Monaco.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* Add Courier New font-face */
-@font-face {
-    font-family: 'Courier New';
-    src: url('../assets/fonts/CourierNew.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 
 body {
-    font-family: 'Courier New', 'Monaco', monospace;  /* updated to use Courier New */
+    font-family: 'Courier New', 'Monaco', monospace;
+    /* updated to use Courier New */
     background-color: var(--dark);
     color: var(--light);
     line-height: 1.6;
@@ -57,13 +43,11 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        repeating-linear-gradient(
-            rgba(0, 0, 0, 0.9) 0px,
+    background:
+        repeating-linear-gradient(rgba(0, 0, 0, 0.9) 0px,
             rgba(0, 0, 0, 0.9) 1px,
             transparent 1px,
-            transparent 2px
-        );
+            transparent 2px);
     z-index: -1;
     opacity: 0.4;
     pointer-events: none;
@@ -86,10 +70,16 @@ a:hover {
     color: var(--primary);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 700;
     margin-bottom: 20px;
-    font-family: 'StalinistOne', 'Poppins', Arial, sans-serif; /* updated font-family */
+    font-family: 'StalinistOne', 'Poppins', Arial, sans-serif;
+    /* updated font-family */
     letter-spacing: 1px;
 }
 
@@ -208,7 +198,8 @@ section:nth-child(odd) {
     color: var(--primary);
     font-size: 1.8rem;
     font-weight: 700;
-    font-family: 'StalinistOne', 'Poppins', Arial, sans-serif;  /* updated font-family for Dc416 logo */
+    font-family: 'StalinistOne', 'Poppins', Arial, sans-serif;
+    /* updated font-family for Dc416 logo */
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: var(--neon-glow);
@@ -266,8 +257,8 @@ section:nth-child(odd) {
     align-items: center;
     justify-content: center;
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('../images/toronto-skyline.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../images/toronto-skyline.jpg');
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -280,13 +271,11 @@ section:nth-child(odd) {
     left: 0;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.1),
-        rgba(0, 0, 0, 0.1) 2px,
-        transparent 2px,
-        transparent 4px
-    );
+    background: repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.1) 2px,
+            transparent 2px,
+            transparent 4px);
     z-index: 1;
     pointer-events: none;
 }
@@ -491,8 +480,8 @@ section:nth-child(odd) {
 /* Community Section */
 .community {
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                url('../images/community-bg.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url('../images/community-bg.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -618,8 +607,8 @@ footer {
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), 
-                url('../images/header-bg.jpg');
+    background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)),
+        url('../images/header-bg.jpg');
     background-size: cover;
     background-position: center;
     padding: 120px 0 60px;
@@ -713,6 +702,7 @@ footer {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1207,8 +1197,8 @@ footer {
 /* CTA Section */
 .cta {
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                url('../images/cta-bg.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url('../images/cta-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1557,7 +1547,8 @@ footer {
     gap: 30px;
 }
 
-.mission-box, .vision-box {
+.mission-box,
+.vision-box {
     flex: 1;
     min-width: 300px;
     background-color: rgba(30, 30, 30, 0.7);
@@ -1574,7 +1565,8 @@ footer {
     border: 1px solid rgba(69, 150, 152, 0.3);
 }
 
-.mission-box h2, .vision-box h2 {
+.mission-box h2,
+.vision-box h2 {
     margin-bottom: 20px;
 }
 
@@ -1783,7 +1775,7 @@ footer {
     opacity: 0.7;
 }
 
-.audio-control:hover, 
+.audio-control:hover,
 .audio-control:focus {
     opacity: 1;
     transform: scale(1.05);
@@ -1806,7 +1798,7 @@ footer {
         bottom: 15px;
         right: 15px;
     }
-    
+
     .audio-control i {
         font-size: 1rem;
     }
