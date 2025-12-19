@@ -10,7 +10,7 @@ RUN npm install
 COPY dc416-terminal-main/ ./
 
 # Build the application
-# RUN npm run build
+RUN npm run build
 
 FROM httpd:2.4-alpine
 
