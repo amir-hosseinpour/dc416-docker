@@ -19,6 +19,19 @@ import command from '../config.json' assert {type: 'json'};
   const linkTextHighlight = `a:hover {color: ${command.colors.link.highlightText}}`
   const commandHighlight = `.command {color: ${command.colors.commands.textColor}}`
   const keys = `.keys {color: ${command.colors.banner}}`
+  const button = `.btn {
+    border: 1px solid ${command.colors.border.color};
+    color: ${command.colors.foreground};
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+  }`
+  const buttonHover = `.btn:hover {
+    background: ${command.colors.border.color};
+    color: ${command.colors.background};
+  }`
 
   head.appendChild(style)
 
@@ -26,7 +39,7 @@ import command from '../config.json' assert {type: 'json'};
   if (!style.sheet) return
 
   if (!command.colors.border.visible) {
-    style.sheet.insertRule("#bars {display: none}")    
+    style.sheet.insertRule("#bars {display: none}")
     style.sheet.insertRule("main {border: none}")
   } else {
     style.sheet.insertRule(`#bars {background: ${command.colors.background}}`)
@@ -54,4 +67,6 @@ import command from '../config.json' assert {type: 'json'};
   style.sheet.insertRule(linkTextHighlight)
   style.sheet.insertRule(commandHighlight)
   style.sheet.insertRule(keys)
+  style.sheet.insertRule(button)
+  style.sheet.insertRule(buttonHover)
 })()

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 /* Variables */
 :root {
     --primary: #CD5CE6;
@@ -192,8 +194,7 @@ section:nth-child(odd) {
     color: var(--primary);
     font-size: 1.8rem;
     font-weight: 700;
-    font-family: 'Courier New', 'Monaco', monospace;
-    /* updated font-family for Dc416 logo */
+    font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 0 10px rgba(205, 92, 230, 0.7);
@@ -541,6 +542,7 @@ footer {
     text-shadow: var(--neon-glow);
     margin-bottom: 10px;
     text-align: left;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .footer-logo h2::after {

@@ -1,17 +1,15 @@
 import command from '../../config.json' assert {type: 'json'};
 
-const createAbout = () : string[] => {
-  const about : string[] = [];
+const createAbout = (): string[] => {
+  const about: string[] = [];
 
   const SPACE = "&nbsp;";
 
   const EMAIL = "Email";
-  const GITHUB = "Github";
-  const LINKEDIN = "Linkedin";
-  
-  const email = `<i class='fa-solid fa-envelope'></i> ${EMAIL}`;   
-  const github = `<i class='fa-brands fa-github'></i> ${GITHUB}`;
-  const linkedin = `<i class='fa-brands fa-linkedin'></i> ${LINKEDIN}`;
+  const DISCORD = "Discord";
+
+  const email = `<i class='fa-solid fa-envelope'></i> ${EMAIL}`;
+  const discord = `<i class='fa-brands fa-discord'></i> ${DISCORD}`;
   let string = "";
 
   about.push("<br>");
@@ -25,17 +23,13 @@ const createAbout = () : string[] => {
 
   string = '';
   string += SPACE.repeat(2);
-  string += github;
-  string += SPACE.repeat(17 - GITHUB.length);
-  string += `<a target='_blank' href='https://github.com/${command.social.github}'>github/${command.social.github}</a>`;
+  string += discord;
+  string += SPACE.repeat(17 - DISCORD.length);
+  string += `<a target='_blank' href='${command.social.discord}'>Discord Server</a>`;
   about.push(string);
 
-  string = '';
-  string += SPACE.repeat(2);
-  string += linkedin;
-  string += SPACE.repeat(17 - LINKEDIN.length);  
-  string += `<a target='_blank' href='https://www.linkedin.com/in/${command.social.linkedin}'>linkedin/${command.social.linkedin}</a>`;
-  about.push(string);
+  about.push("<br>");
+  about.push(`<a href="https://defcontoronto.ca/about.html" target="_blank" class="btn">Learn more about DEFCON Toronto</a>`);
 
   about.push("<br>");
   return about

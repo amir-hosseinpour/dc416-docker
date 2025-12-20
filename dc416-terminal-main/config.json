@@ -19,7 +19,7 @@
     "   | 66  | 66  | 66| 66  \\ 66| 66  | 66| 66\\  666   | 66  | 66  | 66",
     "   | 66  |  666666/| 66  | 66|  666666/| 66 \\  66   | 66  |  666666/",
     "   |__/   \\______/ |__/  |__/ \\______/ |__/  \\__/   |__/   \\______/ ",
-    "                                                                    "                                                                          
+    "                                                                    "
   ],
   "mobileAscii": [
     ";                        ,                                                  ",
@@ -62,24 +62,19 @@
   "title": "WebShell",
   "username": "visitor",
   "hostname": "webshell",
-  "password": "050823",
-  "repoLink": "https://github.com/nasan016/webshell",
+  "password": "DC416isback",
+  "meetupLink": "https://www.meetup.com/defcon416",
   "social": {
-    "email": "your@email.com",
-    "github": "yourgithub",
-    "linkedin": "you"
+    "email": "info@defcontoronto.ca",
+    "discord": "https://discord.gg/VDy69zgfc3"
   },
-  "aboutGreeting": "Hi stranger. Welcome to WebShell.",
-  "projects": [
+  "aboutGreeting": "Hi stranger. Welcome to WebShell v4.1.6.",
+  "events": [
     [
-      "GofeR",
-      "Vue.js reactivity in Go.",
-      "https://github.com/nasan016/gofer"
-    ],
-    [
-      "WebShell",
-      "Terminal styled website.",
-      "https://github.com/nasan016/webshell"
+      "Jan 15: Syndicate: Inside the life of a Ransomware operator",
+      "Speaker: Tammy Harper (Senior Threat Intelligence Researcher @ Flare)",
+      "What you’ll learn:\n\tSee how ransomware affiliates rise through the ranks of their community,\n\thow they organize, build trust, and operate inside their ecosystem.",
+      "https://www.meetup.com/defcon416"
     ]
   ],
   "colors": {
