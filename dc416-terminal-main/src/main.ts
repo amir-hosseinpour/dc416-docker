@@ -4,6 +4,7 @@ import { BANNER } from "./commands/banner";
 import { ABOUT } from "./commands/about"
 import { DEFAULT } from "./commands/default";
 import { EVENTS } from "./commands/events";
+import { HALLOFFAME } from "./commands/halloffame";
 import { createWhoami } from "./commands/whoami";
 
 // Update variables to include tablet view detection
@@ -31,7 +32,7 @@ const PRE_USER = document.getElementById("pre-user");
 const HOST = document.getElementById("host");
 const USER = document.getElementById("user");
 const PROMPT = document.getElementById("prompt");
-const COMMANDS = ["help", "about", "events", "whoami", "rsvp", "banner", "clear", "email", "discord"];
+const COMMANDS = ["help", "about", "events", "whoami", "rsvp", "banner", "clear", "email", "discord", "halloffame"];
 const HISTORY: string[] = [];
 const SUDO_PASSWORD = command.password;
 const MEETUP_LINK = command.meetupLink;
@@ -245,6 +246,13 @@ function commandHandler(input: string) {
       setTimeout(() => {
         window.open(command.social.discord, '_blank');
       }, 500);
+      break;
+    case 'halloffame':
+      if (bareMode) {
+        writeLines(["Nothing to see here.", "<br>"])
+        break;
+      }
+      writeLines(HALLOFFAME);
       break;
     case 'rm -rf':
       if (bareMode) {
