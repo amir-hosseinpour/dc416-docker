@@ -340,7 +340,7 @@ section:nth-child(odd) {
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
-    max-width: 500px;
+    max-width: 800px;
     display: flex;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(205, 92, 230, 0.3);
