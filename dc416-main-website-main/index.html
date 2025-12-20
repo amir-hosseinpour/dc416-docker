@@ -1261,7 +1261,7 @@
 
       // Set widget to loop when finished
       widget.bind(SC.Widget.Events.READY, function () {
-        widget.setVolume(80);
+        widget.setVolume(30);
         widget.bind(SC.Widget.Events.FINISH, function () {
           if (isPlaying) {
             widget.seekTo(0);
