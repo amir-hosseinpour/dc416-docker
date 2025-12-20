@@ -32,7 +32,7 @@ const PRE_USER = document.getElementById("pre-user");
 const HOST = document.getElementById("host");
 const USER = document.getElementById("user");
 const PROMPT = document.getElementById("prompt");
-const COMMANDS = ["help", "about", "events", "whoami", "rsvp", "banner", "clear", "email", "discord", "halloffame"];
+const COMMANDS = ["help", "about", "events", "whoami", "rsvp", "banner", "clear", "email", "discord", "hall of fame"];
 const HISTORY: string[] = [];
 const SUDO_PASSWORD = command.password;
 const MEETUP_LINK = command.meetupLink;
@@ -247,7 +247,7 @@ function commandHandler(input: string) {
         window.open(command.social.discord, '_blank');
       }, 500);
       break;
-    case 'halloffame':
+    case 'hall of fame':
       if (bareMode) {
         writeLines(["Nothing to see here.", "<br>"])
         break;

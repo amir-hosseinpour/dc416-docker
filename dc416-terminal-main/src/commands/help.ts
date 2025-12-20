@@ -24,7 +24,7 @@ const helpObj = {
       "Join our Discord server."
     ],
     [
-      "'halloffame'",
+      "'hall of fame'",
       "Hackers who hacked DC416"
     ],
     [
