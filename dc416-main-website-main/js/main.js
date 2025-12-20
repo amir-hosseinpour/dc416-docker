@@ -79,13 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // If form is valid, show success message
             if (isValid) {
+                // Prepare form data BEFORE disabling fields
+                const formData = new FormData(contactForm);
+
                 const formElements = contactForm.elements;
                 for (let i = 0; i < formElements.length; i++) {
                     formElements[i].disabled = true;
                 }
-
-                // Prepare form data
-                const formData = new FormData(contactForm);
 
                 // Send to Formspree
                 fetch(contactForm.action, {
