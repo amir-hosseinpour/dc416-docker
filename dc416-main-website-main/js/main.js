@@ -143,6 +143,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// FAQ Accordion
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        const faqAnswer = faqItem.querySelector('.faq-answer');
+
+        // Toggle active class
+        faqItem.classList.toggle('active');
+
+        // Toggle show class
+        faqAnswer.classList.toggle('show');
+
+        // Toggle icon
+        const icon = question.querySelector('.faq-toggle i');
+        if (faqAnswer.classList.contains('show')) {
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+        } else {
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+        }
+    });
+});
+
 // Create Digital Rain Effect
 function createDigitalRain() {
     const canvas = document.createElement('canvas');
