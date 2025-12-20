@@ -229,3 +229,110 @@ function isValidEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+
+// Popup functionality for contact emails
+function showEmailPopup(emailType) {
+    // Remove any existing overlays first
+    const existingOverlay = document.querySelector('.popup-overlay');
+    if (existingOverlay) {
+        document.body.removeChild(existingOverlay);
+    }
+
+    const email = emailType === 'volunteers' ? 'volunteers@defcontoronto.ca' : 'sponsors@defcontoronto.ca';
+    const message = `Please reach out to <a href="mailto:${email}" style="color: var(--primary); text-decoration: underline;">${email}</a>`;
+
+    // Create modal overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay'; // Add class for easy removal
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.zIndex = '99999'; // Higher z-index
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.3s ease';
+
+    // Create modal content
+    const modal = document.createElement('div');
+    modal.style.backgroundColor = '#1a1a1a';
+    modal.style.padding = '40px';
+    modal.style.borderRadius = '4px';
+    modal.style.border = '1px solid var(--primary)';
+    modal.style.boxShadow = '0 0 30px rgba(205, 92, 230, 0.2)';
+    modal.style.maxWidth = '90%';
+    modal.style.width = '450px';
+    modal.style.textAlign = 'center';
+    modal.style.position = 'relative';
+    modal.style.transform = 'translateY(20px)';
+    modal.style.transition = 'transform 0.3s ease';
+
+    // Add close button
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.style.position = 'absolute';
+    closeBtn.style.top = '10px';
+    closeBtn.style.right = '15px';
+    closeBtn.style.background = 'none';
+    closeBtn.style.border = 'none';
+    closeBtn.style.color = '#aaa';
+    closeBtn.style.fontSize = '28px';
+    closeBtn.style.cursor = 'pointer';
+    closeBtn.style.transition = 'color 0.3s';
+    closeBtn.onmouseover = () => closeBtn.style.color = '#fff';
+    closeBtn.onmouseout = () => closeBtn.style.color = '#aaa';
+
+    // Add content
+    const title = document.createElement('h3');
+    title.textContent = emailType.charAt(0).toUpperCase() + emailType.slice(1);
+    title.style.color = 'var(--primary)';
+    title.style.marginBottom = '20px';
+    title.style.marginTop = '10px';
+    title.style.fontSize = '1.8rem';
+
+    const text = document.createElement('p');
+    text.innerHTML = message;
+    text.style.lineHeight = '1.6';
+    text.style.margin = '0';
+    text.style.fontSize = '1.1rem';
+    text.style.color = '#ddd';
+
+    modal.appendChild(closeBtn);
+    modal.appendChild(title);
+    modal.appendChild(text);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Animate in
+    requestAnimationFrame(() => {
+        overlay.style.opacity = '1';
+        modal.style.transform = 'translateY(0)';
+    });
+
+    // Close functionality
+    const closePopup = () => {
+        overlay.style.opacity = '0';
+        modal.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, 300);
+    };
+
+    closeBtn.onclick = closePopup;
+    overlay.onclick = (e) => {
+        if (e.target === overlay) closePopup();
+    };
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && document.body.contains(overlay)) {
+            closePopup();
+        }
+    }, { once: true });
+}
