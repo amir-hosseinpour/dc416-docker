@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 /* Variables */
 :root {
     --primary: #CD5CE6;
@@ -192,8 +194,7 @@ section:nth-child(odd) {
     color: var(--primary);
     font-size: 1.8rem;
     font-weight: 700;
-    font-family: 'Courier New', 'Monaco', monospace;
-    /* updated font-family for Dc416 logo */
+    font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 0 10px rgba(205, 92, 230, 0.7);
@@ -541,6 +542,7 @@ footer {
     text-shadow: var(--neon-glow);
     margin-bottom: 10px;
     text-align: left;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .footer-logo h2::after {
@@ -1568,44 +1570,120 @@ footer {
 .team-members {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .team-member {
     background-color: rgba(30, 30, 30, 0.7);
-    border-radius: 10px;
+    border-radius: 2px;
     overflow: hidden;
     width: 100%;
-    max-width: 260px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(205, 92, 230, 0.3);
+    max-width: none;
+    flex: 1 1 480px;
+    /* Responsive basis */
+    display: flex;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Minimal shadow */
+    border: 1px solid rgba(205, 92, 230, 0.2);
     transition: all 0.3s ease;
 }
 
 .team-member:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(205, 92, 230, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.member-image {
+    flex-shrink: 0;
+    width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
 }
 
 .member-image img {
-    width: 100%;
-    height: 260px;
+    width: 130px;
+    height: 130px;
     object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(205, 92, 230, 0.3);
+}
+
+.member-info {
+    padding: 15px 20px 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .team-member h3 {
-    margin: 20px 0 5px;
+    margin: 0 0 5px;
     font-size: 1.3rem;
+    color: var(--light);
 }
 
 .member-role {
     color: var(--primary);
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 0.9rem;
+}
+
+.member-bio {
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    color: #ddd;
+}
+
+.member-socials {
+    margin-top: auto;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+}
+
+.member-socials a {
+    color: #aaa;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.member-socials a:hover {
+    color: var(--primary);
+}
+
+/* Mobile Responsive Team */
+@media (max-width: 768px) {
+    .team-member {
+        flex-direction: column;
+        max-width: 350px;
+        text-align: center;
+    }
+
+    .member-image {
+        width: 100%;
+        height: auto;
+        padding-bottom: 0;
+    }
+
+    .member-image img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .member-info {
+        padding: 20px;
+        align-items: center;
+    }
+
+    .member-socials {
+        justify-content: center;
+    }
 }
 
 .member-bio {

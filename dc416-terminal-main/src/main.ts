@@ -3,14 +3,14 @@ import { HELP } from "./commands/help";
 import { BANNER } from "./commands/banner";
 import { ABOUT } from "./commands/about"
 import { DEFAULT } from "./commands/default";
-import { PROJECTS } from "./commands/projects";
+import { EVENTS } from "./commands/events";
 import { createWhoami } from "./commands/whoami";
 
 // Update variables to include tablet view detection
 let mutWriteLines = document.getElementById("write-lines");
 let historyIdx = 0
 let tempInput = ""
-let userInput : string;
+let userInput: string;
 let isSudo = false;
 let isPasswordInput = false;
 let passwordCounter = 0;
@@ -31,22 +31,22 @@ const PRE_USER = document.getElementById("pre-user");
 const HOST = document.getElementById("host");
 const USER = document.getElementById("user");
 const PROMPT = document.getElementById("prompt");
-const COMMANDS = ["help", "about", "projects", "whoami", "repo", "banner", "clear"];
-const HISTORY : string[] = [];
+const COMMANDS = ["help", "about", "events", "whoami", "rsvp", "banner", "clear", "email", "discord"];
+const HISTORY: string[] = [];
 const SUDO_PASSWORD = command.password;
-const REPO_LINK = command.repoLink;
+const MEETUP_LINK = command.meetupLink;
 
 const scrollToBottom = () => {
   const MAIN = document.getElementById("main");
-  if(!MAIN) return
+  if (!MAIN) return
 
   MAIN.scrollTop = MAIN.scrollHeight;
 }
 
-function userInputHandler(e : KeyboardEvent) {
+function userInputHandler(e: KeyboardEvent) {
   const key = e.key;
 
-  switch(key) {
+  switch (key) {
     case "Enter":
       e.preventDefault();
       if (!isPasswordInput) {
@@ -109,32 +109,32 @@ function enterKey() {
   just insert a prompt before #write-lines
   */
   if (userInput.trim().length !== 0) {
-      commandHandler(userInput.toLowerCase().trim());
-    }
-  
+    commandHandler(userInput.toLowerCase().trim());
+  }
+
   USERINPUT.value = resetInput;
-  userInput = resetInput; 
+  userInput = resetInput;
 }
 
 function tabKey() {
   let currInput = USERINPUT.value;
 
   for (const ele of COMMANDS) {
-    if(ele.startsWith(currInput)) {
+    if (ele.startsWith(currInput)) {
       USERINPUT.value = ele;
       return
     }
   }
 }
 
-function arrowKeys(e : string) {
-  switch(e){
-    case "ArrowDown":      
+function arrowKeys(e: string) {
+  switch (e) {
+    case "ArrowDown":
       if (historyIdx !== HISTORY.length) {
-          historyIdx += 1;
-          USERINPUT.value = HISTORY[historyIdx];
-          if (historyIdx === HISTORY.length) USERINPUT.value = tempInput;  
-      }      
+        historyIdx += 1;
+        USERINPUT.value = HISTORY[historyIdx];
+        if (historyIdx === HISTORY.length) USERINPUT.value = tempInput;
+      }
       break;
     case "ArrowUp":
       if (historyIdx === HISTORY.length) tempInput = USERINPUT.value;
@@ -146,14 +146,14 @@ function arrowKeys(e : string) {
   }
 }
 
-function commandHandler(input : string) {
-  if(input.startsWith("rm -rf") && input.trim() !== "rm -rf") {
+function commandHandler(input: string) {
+  if (input.startsWith("rm -rf") && input.trim() !== "rm -rf") {
     if (isSudo) {
-      if(input === "rm -rf src" && !bareMode) {
+      if (input === "rm -rf src" && !bareMode) {
         bareMode = true;
 
         setTimeout(() => {
-          if(!TERMINAL || !WRITELINESCOPY) return
+          if (!TERMINAL || !WRITELINESCOPY) return
           TERMINAL.innerHTML = "";
           TERMINAL.appendChild(WRITELINESCOPY);
           mutWriteLines = WRITELINESCOPY;
@@ -168,79 +168,83 @@ function commandHandler(input : string) {
           writeLines(["Now everything is ruined.", "<br>"]);
         }, 1200)
 
-        } else if (input === "rm -rf src" && bareMode) {
-          writeLines(["there's no more src folder.", "<br>"])
-        } else {
-          if(bareMode) {
-            writeLines(["What else are you trying to delete?", "<br>"])
-          } else {
-            writeLines(["<br>", "Directory not found.", "type <span class='command'>'ls'</span> for a list of directories.", "<br>"]);
-          }
-        } 
+      } else if (input === "rm -rf src" && bareMode) {
+        writeLines(["there's no more src folder.", "<br>"])
       } else {
-        writeLines(["Permission not granted.", "<br>"]);
+        if (bareMode) {
+          writeLines(["What else are you trying to delete?", "<br>"])
+        } else {
+          writeLines(["<br>", "Directory not found.", "type <span class='command'>'ls'</span> for a list of directories.", "<br>"]);
+        }
+      }
+    } else {
+      writeLines(["Permission not granted.", "<br>"]);
     }
     return
   }
 
-  switch(input) {
+  switch (input) {
     case 'clear':
       setTimeout(() => {
-        if(!TERMINAL || !WRITELINESCOPY) return
+        if (!TERMINAL || !WRITELINESCOPY) return
         TERMINAL.innerHTML = "";
         TERMINAL.appendChild(WRITELINESCOPY);
         mutWriteLines = WRITELINESCOPY;
       })
       break;
     case 'banner':
-      if(bareMode) {
-        writeLines(["WebShell v1.0.0", "<br>"])
+      if (bareMode) {
+        writeLines(["WebShell v4.1.6", "<br>"])
         break;
       }
       writeLines(BANNER);
       break;
     case 'help':
-      if(bareMode) {
+      if (bareMode) {
         writeLines(["maybe restarting your browser will fix this.", "<br>"])
         break;
       }
       writeLines(HELP);
       break;
-    case 'whoami':      
-      if(bareMode) {
+    case 'whoami':
+      if (bareMode) {
         writeLines([`${command.username}`, "<br>"])
         break;
       }
       writeLines(createWhoami());
       break;
     case 'about':
-      if(bareMode) {
+      if (bareMode) {
         writeLines(["Nothing to see here.", "<br>"])
         break;
       }
       writeLines(ABOUT);
       break;
-    case 'projects':
-      if(bareMode) {
-        writeLines(["I don't want you to break the other projects.", "<br>"])
+    case 'events':
+      if (bareMode) {
+        writeLines(["I don't want you to destroy our events.", "<br>"])
         break;
       }
-      writeLines(PROJECTS);
+      writeLines(EVENTS);
       break;
-    case 'repo':
-      writeLines(["Redirecting to github.com...", "<br>"]);
+    case 'rsvp':
+      writeLines(["Redirecting to Meetup.com...", "<br>"]);
       setTimeout(() => {
-        window.open(REPO_LINK, '_blank');
+        window.open(MEETUP_LINK, '_blank');
       }, 500);
       break;
-    case 'linkedin':
-      //add stuff here
-      break;
-    case 'github':
-      //add stuff here
-      break;
+
     case 'email':
-      //add stuff here
+      writeLines([`mailto: ${command.social.email}`, "<br>"]);
+      setTimeout(() => {
+        window.open(`mailto:${command.social.email}`, '_blank');
+      }, 500);
+      break;
+    case 'discord':
+      writeLines(["Redirecting to Discord...", "<br>"]);
+      setTimeout(() => {
+        window.open(command.social.discord, '_blank');
+      }, 500);
       break;
     case 'rm -rf':
       if (bareMode) {
@@ -253,17 +257,17 @@ function commandHandler(input : string) {
       } else {
         writeLines(["Permission not granted.", "<br>"])
       }
-        break;
+      break;
     case 'sudo':
-      if(bareMode) {
+      if (bareMode) {
         writeLines(["no.", "<br>"])
         break;
       }
-      if(!PASSWORD) return
+      if (!PASSWORD) return
       isPasswordInput = true;
       USERINPUT.disabled = true;
 
-      if(INPUT_HIDDEN) INPUT_HIDDEN.style.display = "none";
+      if (INPUT_HIDDEN) INPUT_HIDDEN.style.display = "none";
       PASSWORD.style.display = "block";
       setTimeout(() => {
         PASSWORD_INPUT.focus();
@@ -271,7 +275,7 @@ function commandHandler(input : string) {
 
       break;
     case 'ls':
-      if(bareMode) {
+      if (bareMode) {
         writeLines(["", "<br>"])
         break;
       }
@@ -283,25 +287,25 @@ function commandHandler(input : string) {
       }
       break;
     default:
-      if(bareMode) {
+      if (bareMode) {
         writeLines(["type 'help'", "<br>"])
         break;
       }
 
       writeLines(DEFAULT);
       break;
-  }  
+  }
 }
 
-function writeLines(message : string[]) {
+function writeLines(message: string[]) {
   message.forEach((item, idx) => {
     displayText(item, idx);
   });
 }
 
-function displayText(item : string, idx : number) {
+function displayText(item: string, idx: number) {
   setTimeout(() => {
-    if(!mutWriteLines) return
+    if (!mutWriteLines) return
     const p = document.createElement("p");
     p.innerHTML = item;
     mutWriteLines.parentNode!.insertBefore(p, mutWriteLines);
@@ -310,16 +314,16 @@ function displayText(item : string, idx : number) {
 }
 
 function revertPasswordChanges() {
-    if (!INPUT_HIDDEN || !PASSWORD) return
-    PASSWORD_INPUT.value = "";
-    USERINPUT.disabled = false;
-    INPUT_HIDDEN.style.display = "block";
-    PASSWORD.style.display = "none";
-    isPasswordInput = false;
+  if (!INPUT_HIDDEN || !PASSWORD) return
+  PASSWORD_INPUT.value = "";
+  USERINPUT.disabled = false;
+  INPUT_HIDDEN.style.display = "block";
+  PASSWORD.style.display = "none";
+  isPasswordInput = false;
 
-    setTimeout(() => {
-      USERINPUT.focus();
-    }, 200)
+  setTimeout(() => {
+    USERINPUT.focus();
+  }, 200)
 }
 
 function passwordHandler() {
@@ -343,7 +347,7 @@ function passwordHandler() {
   }
 }
 
-function easterEggStyles() {   
+function easterEggStyles() {
   const bars = document.getElementById("bars");
   const body = document.body;
   const main = document.getElementById("main");
@@ -357,7 +361,7 @@ function easterEggStyles() {
 
   body.style.backgroundColor = "black";
   body.style.fontFamily = "VT323, monospace";
-  
+
   // Adjusted font sizes for different viewport widths
   if (isVerySmallView) {
     body.style.fontSize = "9px";
@@ -368,7 +372,7 @@ function easterEggStyles() {
   } else {
     body.style.fontSize = "20px";
   }
-  
+
   body.style.color = "white";
 
   for (let i = 0; i < span.length; i++) {
@@ -378,10 +382,10 @@ function easterEggStyles() {
   USERINPUT.style.backgroundColor = "black";
   USERINPUT.style.color = "white";
   USERINPUT.style.fontFamily = "VT323, monospace";
-  
+
   // Match input font size to body
   USERINPUT.style.fontSize = body.style.fontSize;
-  
+
   if (PROMPT) PROMPT.style.color = "white";
 }
 
@@ -390,7 +394,7 @@ function adjustForScreenSize() {
   isTabletView = window.innerWidth <= 1024 && window.innerWidth > 600;
   isMobileView = window.innerWidth <= 600 && window.innerWidth > 320;
   isVerySmallView = window.innerWidth <= 320;
-  
+
   if (bareMode) {
     // Adjust easter egg styles for current view
     const body = document.body;
@@ -411,29 +415,29 @@ function adjustForScreenSize() {
 }
 
 const initEventListeners = () => {
-  if(HOST) {
-    HOST.innerText= command.hostname;
+  if (HOST) {
+    HOST.innerText = command.hostname;
   }
 
-  if(USER) {
+  if (USER) {
     USER.innerText = command.username;
   }
 
-  if(PRE_HOST) {
-    PRE_HOST.innerText= command.hostname;
+  if (PRE_HOST) {
+    PRE_HOST.innerText = command.hostname;
   }
 
-  if(PRE_USER) {
+  if (PRE_USER) {
     PRE_USER.innerText = command.username;
-  } 
+  }
 
   window.addEventListener('load', () => {
     writeLines(BANNER);
     adjustForScreenSize();
   });
-  
+
   window.addEventListener('resize', adjustForScreenSize);
-  
+
   USERINPUT.addEventListener('keypress', userInputHandler);
   USERINPUT.addEventListener('keydown', userInputHandler);
   PASSWORD_INPUT.addEventListener('keypress', userInputHandler);

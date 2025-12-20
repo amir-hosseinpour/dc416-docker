@@ -205,7 +205,7 @@
       letter-spacing: 2px;
       font-weight: bold;
       text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-      font-family: 'Courier New', monospace;
+      font-family: 'Orbitron', monospace;
       position: relative;
       z-index: 1;
     }
@@ -1208,10 +1208,8 @@
           <div class="footer-column">
             <h3>Community</h3>
             <ul>
-              <li><a href="#">Code of Conduct</a></li>
-              <li><a href="#">Join Us</a></li>
-              <li><a href="#">Volunteer</a></li>
-              <li><a href="#">Sponsors</a></li>
+              <li><a href="#" onclick="showEmailPopup('volunteers'); return false;">Volunteers</a></li>
+              <li><a href="#" onclick="showEmailPopup('sponsors'); return false;">Sponsors</a></li>
             </ul>
           </div>
           <div class="footer-column">
@@ -1263,7 +1261,7 @@
 
       // Set widget to loop when finished
       widget.bind(SC.Widget.Events.READY, function () {
-        widget.setVolume(80);
+        widget.setVolume(30);
         widget.bind(SC.Widget.Events.FINISH, function () {
           if (isPlaying) {
             widget.seekTo(0);
