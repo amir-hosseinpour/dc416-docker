@@ -239,89 +239,126 @@ function showEmailPopup(emailType) {
     }
 
     const email = emailType === 'volunteers' ? 'volunteers@defcontoronto.ca' : 'sponsors@defcontoronto.ca';
-    const message = `Please reach out to <a href="mailto:${email}" style="color: var(--primary); text-decoration: underline;">${email}</a>`;
+    // Use monospace font for the message to match the retro vibe
+    const message = `COMMUNICATION_LINK_ESTABLISHED:<br><br>Please reach out to <a href="mailto:${email}" style="color: #00f3ff; text-decoration: underline; text-shadow: 0 0 5px rgba(0, 243, 255, 0.5);">${email}</a>`;
+    const titleText = `SYSTEM://CONTACT/${emailType.toUpperCase()}.EXE`;
 
     // Create modal overlay
     const overlay = document.createElement('div');
-    overlay.className = 'popup-overlay'; // Add class for easy removal
+    overlay.className = 'popup-overlay';
     overlay.style.position = 'fixed';
     overlay.style.top = '0';
     overlay.style.left = '0';
     overlay.style.width = '100%';
     overlay.style.height = '100%';
     overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+    overlay.style.backdropFilter = 'blur(2px)';
     overlay.style.display = 'flex';
     overlay.style.justifyContent = 'center';
     overlay.style.alignItems = 'center';
-    overlay.style.zIndex = '99999'; // Higher z-index
+    overlay.style.zIndex = '99999';
     overlay.style.opacity = '0';
-    overlay.style.transition = 'opacity 0.3s ease';
+    overlay.style.transition = 'opacity 0.2s ease-out';
 
-    // Create modal content
+    // Create modal window (Retro Style)
     const modal = document.createElement('div');
-    modal.style.backgroundColor = '#1a1a1a';
-    modal.style.padding = '40px';
-    modal.style.borderRadius = '4px';
-    modal.style.border = '1px solid var(--primary)';
-    modal.style.boxShadow = '0 0 30px rgba(205, 92, 230, 0.2)';
+    modal.style.backgroundColor = '#050505';
+    modal.style.border = '2px solid #CD5CE6'; // Primary Purple
+    modal.style.boxShadow = '0 0 20px rgba(205, 92, 230, 0.4), inset 0 0 20px rgba(205, 92, 230, 0.1)';
     modal.style.maxWidth = '90%';
-    modal.style.width = '450px';
-    modal.style.textAlign = 'center';
+    modal.style.width = '480px';
     modal.style.position = 'relative';
-    modal.style.transform = 'translateY(20px)';
-    modal.style.transition = 'transform 0.3s ease';
+    modal.style.transform = 'scale(0.95)';
+    modal.style.transition = 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    modal.style.fontFamily = '"Courier New", Courier, monospace'; // Retro Font
 
-    // Add close button
+    // Create Title Bar
+    const titleBar = document.createElement('div');
+    titleBar.style.backgroundColor = '#CD5CE6';
+    titleBar.style.color = '#000';
+    titleBar.style.padding = '8px 12px';
+    titleBar.style.display = 'flex';
+    titleBar.style.justifyContent = 'space-between';
+    titleBar.style.alignItems = 'center';
+    titleBar.style.fontWeight = 'bold';
+    titleBar.style.letterSpacing = '1px';
+    titleBar.style.fontSize = '14px';
+    titleBar.textContent = titleText;
+
+    // Title Bar Icon (Decoration)
+    const titleIcon = document.createElement('span');
+    titleIcon.innerHTML = '&#9632;'; // Square block
+    titleIcon.style.marginRight = '8px';
+    titleBar.prepend(titleIcon);
+
+    // Close Button (in Title Bar)
     const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '&times;';
-    closeBtn.style.position = 'absolute';
-    closeBtn.style.top = '10px';
-    closeBtn.style.right = '15px';
-    closeBtn.style.background = 'none';
-    closeBtn.style.border = 'none';
-    closeBtn.style.color = '#aaa';
-    closeBtn.style.fontSize = '28px';
+    closeBtn.textContent = 'X';
+    closeBtn.style.background = '#000';
+    closeBtn.style.color = '#CD5CE6';
+    closeBtn.style.border = '1px solid #000';
+    closeBtn.style.width = '20px';
+    closeBtn.style.height = '20px';
+    closeBtn.style.lineHeight = '18px';
+    closeBtn.style.textAlign = 'center';
     closeBtn.style.cursor = 'pointer';
-    closeBtn.style.transition = 'color 0.3s';
-    closeBtn.onmouseover = () => closeBtn.style.color = '#fff';
-    closeBtn.onmouseout = () => closeBtn.style.color = '#aaa';
+    closeBtn.style.fontSize = '12px';
+    closeBtn.style.fontWeight = 'bold';
+    closeBtn.style.marginLeft = '10px';
+    closeBtn.onmouseover = () => { closeBtn.style.background = '#fff'; closeBtn.style.color = '#000'; };
+    closeBtn.onmouseout = () => { closeBtn.style.background = '#000'; closeBtn.style.color = '#CD5CE6'; };
 
-    // Add content
-    const title = document.createElement('h3');
-    title.textContent = emailType.charAt(0).toUpperCase() + emailType.slice(1);
-    title.style.color = 'var(--primary)';
-    title.style.marginBottom = '20px';
-    title.style.marginTop = '10px';
-    title.style.fontSize = '1.8rem';
+    // Content Area
+    const content = document.createElement('div');
+    content.style.padding = '30px';
+    content.style.color = '#fff';
+    content.style.fontSize = '1.1rem';
+    content.style.lineHeight = '1.6';
+    content.style.textAlign = 'center';
 
     const text = document.createElement('p');
     text.innerHTML = message;
-    text.style.lineHeight = '1.6';
     text.style.margin = '0';
-    text.style.fontSize = '1.1rem';
-    text.style.color = '#ddd';
 
-    modal.appendChild(closeBtn);
-    modal.appendChild(title);
-    modal.appendChild(text);
+    // Add pulsing cursor effect
+    const cursor = document.createElement('span');
+    cursor.innerHTML = '&#9608;'; // Block cursor
+    cursor.style.display = 'inline-block';
+    cursor.style.marginLeft = '5px';
+    cursor.style.color = '#CD5CE6';
+    cursor.style.animation = 'blink 1s step-end infinite';
+
+    // Inject blink animation style if not exists
+    if (!document.getElementById('blink-style')) {
+        const style = document.createElement('style');
+        style.id = 'blink-style';
+        style.innerHTML = '@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }';
+        document.head.appendChild(style);
+    }
+
+    titleBar.appendChild(closeBtn);
+    content.appendChild(text);
+    content.appendChild(cursor);
+    modal.appendChild(titleBar);
+    modal.appendChild(content);
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
     // Animate in
     requestAnimationFrame(() => {
         overlay.style.opacity = '1';
-        modal.style.transform = 'translateY(0)';
+        modal.style.transform = 'scale(1)';
     });
 
     // Close functionality
     const closePopup = () => {
         overlay.style.opacity = '0';
-        modal.style.transform = 'translateY(20px)';
+        modal.style.transform = 'scale(0.95)';
         setTimeout(() => {
             if (document.body.contains(overlay)) {
                 document.body.removeChild(overlay);
             }
-        }, 300);
+        }, 200);
     };
 
     closeBtn.onclick = closePopup;
